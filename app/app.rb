@@ -1,41 +1,10 @@
-ActiveRecord::Base.configurations = YAML.load_file('config/database.yml')
-ActiveRecord::Base.establish_connection(:development)
+require_relative 'route/hello'
+require_relative 'route/sinatra-sample'
 
-class Comments < ActiveRecord::Base
-end
+class SampleApp < Sinatra::Base
 
-class HelloApp < Sinatra::Base
-
-  get '/hello' do
-    'Hello World!'
-  end
-
-  get "/hello/:name" do
-    "hello #{params[:name]}"
-  end
-
-  get "/" do
-    @title = "sinatra-sample"
-    @content = "This is the sample page for sinatra."
-    erb :index
-  end
-
-  get "/about" do
-    @title = "sinatra-sample-about"
-    @content = "This is the sample 'about' page for sinatra."
-    @email = 'mail@gmail.com'
-    erb :index
-  end
-
-  get "/sampleapp" do
-    @title = "Sample Application"
-    @comments = Comments.order("id desc").all
-    erb :sampleapp
-  end
-
-  post "/new" do
-    Comments.create({:body => params[:body]})
-    redirect '/sampleapp'
+  configure do
+    set :app_file, __FILE__
   end
 
 end
