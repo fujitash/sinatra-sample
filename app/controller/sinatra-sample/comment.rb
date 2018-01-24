@@ -1,3 +1,5 @@
+require_relative '../../model/comments'
+
 module SinatraSample
 
 class CommentController
@@ -5,7 +7,7 @@ class CommentController
 
   def main
     @title = "sinatra-sample-comment"
-    @comments = Comments.order("id desc").all
+    @comments = Comments.all()
   end
 end
 

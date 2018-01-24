@@ -3,11 +3,11 @@
 <ul>
     <% @comments.each do |comment| %>
     <li data-id= "<%= comment.id %>">
-        <%= comment.body %>
+        <%= comment.comment %>
     </li>
     <% end %>
     <h2>Add new</h2>
     <form method="post" action="/new">
-        <input type= "text" name="body"><input type= "submit" value="post!">
+        <input type= "text" name="comment"><input type= "submit" value="post!">
     </form>
 </ul>

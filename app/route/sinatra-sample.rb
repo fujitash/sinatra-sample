@@ -26,7 +26,7 @@ class SampleApp < Sinatra::Base
     controller = SinatraSample::CommentController.new
     controller.main
     @title = controller.title
-    @comments = Comments.order("id desc").all
+    @comments = controller.comments
     erb :"sinatra-sample/comment"
   end
 
@@ -35,5 +35,6 @@ class SampleApp < Sinatra::Base
     controller.main(params)
     redirect '/comment'
   end
+
 
 end
